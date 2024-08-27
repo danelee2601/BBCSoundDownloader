@@ -56,9 +56,12 @@ class Downloader:
                 suffix = '.' + row['location']
                 max_description_length = MAX_FILENAME_LENGTH - len(suffix)
                 filename = self.sanitize_path(row['description'])[:max_description_length] + suffix
-                filepath = Path('sounds') / folder / filename
+                # filepath = Path('sounds') / folder / filename
+                # if not filepath.exists():
+                #     url = 'http://bbcsfx.acropolis.org.uk/assets/' + row['location']
+                filepath = Path('sounds') / folder / (filename+".zip")
                 if not filepath.exists():
-                    url = 'http://bbcsfx.acropolis.org.uk/assets/' + row['location']
+                    url = 'http://sound-effects-media.bbcrewind.co.uk/zip/' + row['location']+'.zip'
                     samples.append((url, filepath))
         return samples
 
